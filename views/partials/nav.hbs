@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="/home">Chapter One</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/aboutus">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/browse">Browse Books</a>
+          </li>
+          <li class="nav-item">
+            <form action = "/search" method = "POST" class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" name="searchtext" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-AC703D my-2 my-sm-0" type="submit">Find Book</button>
+            </form>
+          </li>
+        </ul>
+        <span>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a href="/signup" class="nav-link">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a href="/login" class="nav-link">Login</a>
+            </li>
+          </ul>
+        </span>
+    </div>
+</nav>

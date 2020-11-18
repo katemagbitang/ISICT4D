@@ -1,9 +1,8 @@
 const express = require('express');
 const app = express();
 
+const controller = require('../controller/controller.js');
 
-app.get('/', function(req,res){
-    res.render('index',{});
-});
+app.get('/', controller.getIndex);
 
 module.exports = app;
