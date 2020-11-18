@@ -1,0 +1,13 @@
+/* ======================================= Section: Home ======================================== */
+
+section {
+    width: 100vw;
+    /*height: 100vh;*/
+}
+section#intro{
+    padding:0;
+}
+.inactiveLink {
+    pointer-events: none;
+    cursor: default;
+}
