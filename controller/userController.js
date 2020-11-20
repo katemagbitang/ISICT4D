@@ -1,6 +1,8 @@
 const db = require('../model/db.js');
 
 const userModel = require('../model/userModel.js');
+const saltRounds = 10;
+const bcrypt = require('bcrypt');
 
 const userController = {
     getSignup: function(req,res){
@@ -15,7 +17,7 @@ const userController = {
         var userType = 'Regular';
 
         console.log("ENTER");
-        // bcrypt.hash(password, saltRounds, function(err, hash) {
+        bcrypt.hash(password, saltRounds, function(err, hash) {
 
             let user = userModel.findOne({ email: email });
             if (!user) {
@@ -26,7 +28,7 @@ const userController = {
             user = new userModel({
                 username: username,
                 email: email,
-                password: password,
+                password: hash,
                 firstName:fName,
                 lastName: lName,
                 userType: userType
@@ -37,7 +39,7 @@ const userController = {
 
             res.redirect('/login');
         
-        // })
+        })
     },
     getLogin: function(req,res){
         res.render("login",{});
@@ -49,8 +51,8 @@ const userController = {
         db.findOne(userModel, {username : username}, '', function(result){
             if(result != null) { // if username EXISTS in the db
                 if (username == result.username){
-                    // bcrypt.compare(password, result.password, function(err, equal) {
-                        // if(equal){ // correct password
+                    bcrypt.compare(password, result.password, function(err, equal) {
+                        if(equal){ // correct password
 
                             var userUpdate = {
                                 _id: result._id,
@@ -60,24 +62,37 @@ const userController = {
                                 firstName: result.firstName,
                                 lastName: result.lastName,
                                 userType: result.userType,
-                                // lastLogin: Date.now()
                             }
 
-                            // db.updateOne(userModel, {username : username}, userUpdate);
+                            db.updateOne(userModel, {username : username}, userUpdate);
 
-                            req.session.username = result.username;
-                            req.session.userType = result.userType;
-                            res.redirect("/"); //success, then redirects to home
-                        // }
-                        // else { // wrong password
-                        //     res.render("login", {err:"Username and password does not match."});
-                        // }
-                    // })
+                            // req.session.username = result.username;
+                            // req.session.userType = result.userType;
+                            res.redirect("/home"); //success, then redirects to home
+                        }
+                        else { // wrong password
+                            res.render("login", {err:"Username and password does not match."});
+                        }
+                    })
                 }
             }else{//if username DOES NOT EXIST in the db
                 res.render("login", {err:"Username and password does not match."});
             }
         });
+    },
+    getLogout: function(req,res){
+
+        //destroys current session
+        req.session.destroy(function(err) {
+
+            if(err) throw err;
+            /*
+                redirects the client to `/profile` using HTTP GET,
+                defined in `../routes/routes.js`
+            */
+            res.redirect('/');
+        });
+            
     }
 }
 
