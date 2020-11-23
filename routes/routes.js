@@ -10,6 +10,8 @@ app.get('/home', controller.getHome);
 app.get('/signup', userController.getSignup);
 app.get('/login', userController.getLogin);
 app.get('/logout', userController.getLogout);
+app.get('/getUsername', userController.getUsername);
+app.get('/getEmail', userController.getEmail);
 
 app.post('/signup', userController.postSignup);
 app.post('/login', userController.postLogin);

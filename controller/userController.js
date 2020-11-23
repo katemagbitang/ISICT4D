@@ -93,6 +93,30 @@ const userController = {
             res.redirect('/');
         });
             
+    },
+    getUsername: function (req, res) {
+        var username = req.query.username;
+
+        db.findOne(userModel, {username : username}, 'username', function(result){
+            if(result != null) { // if username EXISTS in the db
+                res.send(result);
+                console.log("not null: "+result);
+            }else
+                res.send(result);
+
+        });
+    },
+
+    getEmail: function (req, res) {
+        var email = req.query.email;
+
+        db.findOne(userModel, {email : email}, 'email', function(result){
+            if(result != null) { // if email EXISTS in the db
+                res.send(result);
+                console.log(result);
+            }else
+                res.send(" null: "+result);
+        });
     }
 }
 
