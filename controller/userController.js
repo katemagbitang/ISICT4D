@@ -66,8 +66,9 @@ const userController = {
 
                             db.updateOne(userModel, {username : username}, userUpdate);
 
-                            // req.session.username = result.username;
-                            // req.session.userType = result.userType;
+                            req.session.username = result.username;
+                            req.session.userType = result.userType;
+                            console.log(req.session.userType);
                             res.redirect("/home"); //success, then redirects to home
                         }
                         else { // wrong password

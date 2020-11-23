@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        {{>head}}
+    </head>
+    <body>
+        {{!-- NAVBARS START --}}
+        <div id='navlog'>
+            {{>navlog}}
+        </div>
+        <div id='navadmin'>
+            {{>navadmin}}
+        </div>
+        <div id='nav'>
+            {{>nav}}
+        </div>
+        {{!-- NAVBARS END --}}
+
+        <section id="forum">
+            <div class="title">
+                <h2 style="color:#2f2f2f; font-size: 40px;">Forum</h2>
+                <h4 style="color: #2f2f2f; width: 60%;">Alyansang Tapat Sa Lasallista believes in a lot of things, and one of them is that through Unity and Collective Effort we can achieve greatness. Join us in various discussions that tackle different political issues and society in general.</h4>
+                <div style="display: flex;align-items: center;justify-content: center;flex-direction: row;width:20%;">                   
+                    {{#if UserLogged}}
+                        <img src="https://img.icons8.com/ios/25/992525/plus.png">
+                        <h4 style="color: #992525; width: 60%;"><a href="/createpost">Add a discussion</a></h4>
+                    {{/if}}
+                </div>
+                <div style="min-width:80%;">
+                    <form action="/search" method="POST">
+                        <input type="text" name="search" placeholder="  Search posts using tags" id="search" style="width: 100%;height:5vh;font-family: 'Lato';">
+                        <button type="submit" class="logbutton">Search</button>
+                    </form>
+                </div>
+            </div>
+            
+            
+            <div id="forumwrap">
+                {{#each posts}}
+                    {{>forumpost}}
+                {{/each}}
+                {{!-- {{>forumpost forumtitle="[Martial Law] What if Marcos never declared Martial Law?" id=1}}
+                {{>forumpost forumtitle="[SOGIE Bill] Why are so many against SOGIE Bill?" id=2}}
+                {{>forumpost forumtitle="[ABS-CBN Shutdown] What's your opinion of the impending closure?" id=3}} --}}
+            </div>
+            
+
+        </section>
+
+	{{!-- {{>script}} --}}
+
+
+<!--
+References:
+Inspired by https://codepen.io/bennettfeely/pen/CGFEs for the upvote/downvote buttons
+Forum grid inspired by https://www.jqueryscript.net/layout/Minimalist-Masonry-style-Grid-Layout-Plugin-Masonry-js.html
+Slippry Plugin http://slippry.com/
+Inspired by Groovin Bootstrap Theme
+-->
+</body>
+</html>
+
+{{!-- {
+"postNumber": 1, 
+"username":"carlobear" ,
+"title":"What if Marcos never declared Martial Law?", 
+"postText":"What if Marcos never declared Martial Law and stepped down in '73? Would we have seen a President Ninoy Aquino? Would we have been a vastly different country today (socially and/or economically), or would it be more of the same? I'd like to know your thoughts on this.", 
+"likes": 999, 
+"status": "Approved", 
+"photo": "url something"
+} --}}

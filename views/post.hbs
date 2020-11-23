@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>head}}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/js/validator.min.js" type="text/javascript"></script>
+    <script src="/js/comment.js" type="text/javascript"></script>
+</head>
+<body>
+
+    {{!-- NAVBARS START --}}
+    <div id='navlog'>
+        {{>navlog}}
+    </div>
+    <div id='navadmin'>
+        {{>navadmin}}
+    </div>
+    <div id='nav'>
+        {{>nav}}
+    </div>
+    {{!-- NAVBARS END --}}
+
+	<section id="post" style="height: auto;background-image: url(../../img/Black.png);">
+		<div class="posttitle">
+            <text class="forumtitle">{{forumtitle}}</text>
+            <text class="forumdate">{{memoryDateFormat forumdate}}</text>
+            <text class="forumauthor">By {{forumauthor}}</text>
+        </div>
+        <div class="contentwrap">
+            <div class="content">
+                <div class="ogpost">
+                  {{forumpost}}
+                  {{!-- <div class="vote circle">
+                    <div class="increment up"><img src="https://img.icons8.com/material-rounded/24/2ecc71/filled-like.png"/></div>
+                    <div class="count">{{forumreact}}</div>
+                    <div class="increment down"><img src="https://img.icons8.com/material-rounded/24/e74c3c/dislike.png"/></div>
+                  </div> --}}
+                  <div>
+                    {{#ifCond forumauthor username}}
+                    <a href="/editpost/{{id}}">Edit</a> | <a href="/deletepost/{{postNumber}}">Delete</a>
+                    {{/ifCond}}
+                  </div>
+                </div>
+                <div class="commentwrap">
+                    <div class="poststats">
+                        {{commentcount}} Comment/s
+                    </div>
+                    {{#each comments}}
+                        {{>comment}}
+                    {{/each}}
+
+                    <hr style="border: 1px solid #d3d3d3; width: 100%;"> 
+                    {{#if UserLogged}}
+                    <div class="comment">
+                        <div class="usercomment" style="font-weight: 800;">{{username}}</div>
+                        <form class="newcommentform" action="/comment/{{postNumber}}" method="POST">
+                            <input type="text" id="newcomment" name="newcom" class="contentcomment" style="width:100%;" placeholder="Write your comment here...." required>
+                            <input type="submit" id="submit" value="COMMENT" class="logbutton" style="width: 15%; margin: 0; margin-left:2%;" disabled>
+                        </form>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

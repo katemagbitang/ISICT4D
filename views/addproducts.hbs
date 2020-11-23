@@ -1,0 +1,126 @@
+<head>
+    {{>head}}
+
+    <title>Add Products | Chapter One</title>
+</head>
+<body>
+    {{!-- NAVBARS START --}}
+    <div id='navlog'>
+        {{>navlog}}
+    </div>
+    <div id='navadmin'>
+        {{>navadmin}}
+    </div>
+    <div id='nav'>
+        {{>nav}}
+    </div>
+    {{!-- NAVBARS END --}}
+    <br><br>
+
+    <div class="col-10  card card-body" style="margin: 0 auto">
+        <h5 class="card-title" style="text-align:center; color:#DC3545">Add Product</h5>
+        <h6 class="card-subtitle mb-2 text-muted" style="text-align:center">Product Details</h6><br>
+
+        <form id ="addproduct_form" name ="addproduct_form" action = "/addProducts" enctype="multipart/form-data" method="post" onsubmit="return validateForm()">
+            <table class="table table-hover" >
+                <tr><th>Book Title: </th>
+                    <td><input class="form-control mr-sm-2" placeholder="Book Title" id="Book_Title" name="Book_Title" required></td>
+                    
+                </tr>
+                <tr><th>Book Cover: </th>
+                    <td><div class="input-group">
+                            <span><span class="btn btn-outline-default my-sm-0"><input type="file" accept="image/*" id="myImage" name="myImage" required></span></span>
+                        </div></td>
+                    
+                </tr>
+                <tr><th>Author/s: </th>
+                    <td><input class="form-control mr-sm-2" placeholder="Book Author/s" id="author" name="author" required></td>
+                    
+                </tr>
+                <tr><th>Category: </th>
+                    <td><select class="form-control" id="category" name="category" required> 
+                        <option value="" selected disabled hidden>Select Category</option>
+                        <option>Art</option>
+                        <option>Architecture</option>
+                        <option>Beauty And Fashion</option>
+                        <option>Business</option>
+                        <option>Children's Classic</option>
+                        <option>Comics</option>
+                        <option>Cooking</option>
+                        <option>Crafts</option>
+                        <option>Early Reader</option>
+                        <option>Family And Relationships</option>
+                        <option>Fantasy</option>
+                        <option>Fiction</option>
+                        <option>Film And Media</option>
+                        <option>Graphic Design</option>
+                        <option>Health</option>
+                        <option>History</option>
+                        <option>Hobbies</option>
+                        <option>Illustrated Humor</option>
+                        <option>Language</option>
+                        <option>Literature</option>
+                        <option>Manga</option>
+                        <option>Non-Fiction</option>
+                        <option>Philosophy</option>
+                        <option>Photography</option>
+                        <option>Psychology</option>
+                        <option>Religion</option>
+                        <option>Science</option>
+                        <option>Self-Help</option>
+                        <option>Sports</option>
+                        <option>Toddler</option>
+                        <option>Travel</option>
+                    </select></td>
+                    
+                </tr>
+                <tr><th>Book Synopsis: </th>
+                    <td><textarea class="form-control mr-sm-2" placeholder="Book Synopsis" rows="5" id="bookSynopsis" name="bookSynopsis" required></textarea></td>
+                    
+                </tr>
+                <tr><th>Publication Year: </th>
+                    <td><input class="form-control mr-sm-2" type="number" placeholder="2020" min="1600" id="year" name="year" required></td>
+                    
+                </tr>
+                <tr><th>Publisher: </th>
+                    <td><input class="form-control mr-sm-2" placeholder="Publishing House" id="publisher" name="publisher" required></td>
+                    
+                </tr>
+                <tr><th>Book Edition: </th>
+                    <td><input class="form-control mr-sm-2" placeholder="Edition" id="edition" name="edition" required></td>
+                    
+                </tr>
+                <tr><th>Book Type: </th>
+                    <td><select class="form-control" id="type" name="type" required> 
+                        <option value="" selected disabled hidden>Select Book Type</option>
+                        <option>Hardbound</option>
+                        <option>Softbound</option>
+                    </select></td>
+                    
+                </tr>
+                <tr><th>Book Quality</th>
+                    <td><select class="form-control" id="quality" name="quality" required>
+                        <option value="" selected disabled hidden>Select Book Quality</option>
+                        <option>New</option>
+                        <option>Used</option>
+                    </select></td>
+                    
+                </tr>
+                <tr><th>Quantity</th>
+                    <td><input class="form-control mr-sm-2" type="number" placeholder="0" min="0" id="quantity" name="quantity" required></td>
+                    
+                </tr>
+
+                <tr><th>Selling Price: </th>
+                    <td><input class="form-control mr-sm-2" type="number" placeholder="₱ 00.00" min="00.00" id="sellingPrice" name="sellingPrice" required></td>
+                    
+                </tr>
+                <tr><th>Price Bought: </th>
+                    <td><input class="form-control mr-sm-2" type="number" placeholder="₱ 00.00" min="00.00" id="priceBought" name="priceBought" required></td>
+                    
+                </tr>
+            </table>
+            <button class="btn btn-outline-success my-2 my-sm-0" id="submit" type="submit">Add Product</button>
+        </form>
+    </div> <br>
+</body>
