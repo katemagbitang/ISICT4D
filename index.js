@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const MongoClient = require('mongodb').MongoClient
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const moment = require('moment');
 const myurl = 'mongodb://localhost:27017/ISICT4D';
 const PORT = 3000;
 
@@ -13,6 +14,15 @@ const routes = require('./routes/routes.js');
 
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerHelper('memoryDateFormat', function(date) {
+  return moment(date).format("DD-MMM-YYYY");
+});
+hbs.registerHelper('ifCond', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
 
 app.use(express.static(__dirname + "/public"));
 

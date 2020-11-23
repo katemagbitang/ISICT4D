@@ -20,10 +20,21 @@ app.get('/addproduct',adminController.getAddProduct);
 
 app.get('/createpost', postController.getCreatePost);
 app.get('/articles', postController.viewAllPost);
+app.get('/post/:id', postController.viewPost);
 
 app.post('/createpost', postController.postCreatePost);
 
 app.post('/signup', userController.postSignup);
 app.post('/login', userController.postLogin);
+
+app.post('/comment/:id',postController.postComment);
+
+app.get('/editpost/:id',postController.getEditPost);
+
+app.post('/editpost/:id',postController.postEditPost);
+
+app.get('/deletepost/:id',postController.getDeletePost);
+
+app.get('/deletecomment/:id/:text', postController.getDeleteComment);
 
 module.exports = app;
