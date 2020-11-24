@@ -4,12 +4,12 @@ var Schema = mongoose.Schema;
 
   const postSchema = new Schema({
     postNumber:{
-        type: Number,
+        type: Schema.Types.ObjectId,
         unique: true,
         required: [true, 'Required']
     },
     username: {
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: "User",
         required: [true, 'Required']
     },

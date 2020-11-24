@@ -1,5 +1,6 @@
 const Post = require('../model/postModel.js');
 const Count = require('../model/countModel.js');
+const { ObjectID } = require('mongodb');
 
 const postController ={
     
@@ -13,10 +14,10 @@ const postController ={
         }
     },
     postCreatePost : function(req,res){
-        Count.findOneAndUpdate({identity: "counter"},{$inc: {numberPost: 1}},function(err,number){
+        // Count.findOneAndUpdate({identity: "counter"},{$inc: {numberPost: 1}},function(err,number){
             let post = new Post({
-                postNumber: number.numberPost+1,
-                // postNumber: 1,
+                // postNumber: number.numberPost+1,
+                postNumber: ObjectID(),
                 username: req.session.username,
                 title: req.body.dtitle,
                 postText: req.body.darticle,
@@ -25,9 +26,10 @@ const postController ={
                 reacts: 0,
             });
             post.save();
+            console.log(post);
             console.log('Post Added');
             res.redirect('/articles');
-        })
+        // })
     },
     viewAllPost : function(req,res){
         Post.find({}, function(err, posts){
@@ -52,11 +54,11 @@ const postController ={
     },
     viewPost : function(req,res){
 
-        Post.findOne({postNumber: req.params.id })
+        Post.findOne({postNumber: req.params.postNumber })
         .populate('username')
         .exec(function(err,posts){
             if(err){
-                return res.render('error');
+                return res.render('errorpage');
                 // console.log(err);
             } else{
                 if(req.user){
@@ -92,7 +94,7 @@ const postController ={
     },
     postComment: function(req,res){
 
-        console.log(req.session.passport.user);
+        console.log(req.session.user);
     
         var objComment = {
             postNumber: req.params.id,
