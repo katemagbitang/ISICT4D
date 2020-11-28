@@ -3,11 +3,11 @@ var Schema = mongoose.Schema;
 // var passportLocalMongoose = require('passport-local-mongoose');
 
   const postSchema = new Schema({
-    postNumber:{
-        type: Schema.Types.ObjectId,
-        unique: true,
-        required: [true, 'Required']
-    },
+    // postNumber:{
+    //     type: Schema.Types.ObjectId,
+    //     unique: true,
+    //     required: [true, 'Required']
+    // },
     username: {
         type: String,
         ref: "User",

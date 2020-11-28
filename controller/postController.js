@@ -17,7 +17,7 @@ const postController ={
         // Count.findOneAndUpdate({identity: "counter"},{$inc: {numberPost: 1}},function(err,number){
             let post = new Post({
                 // postNumber: number.numberPost+1,
-                postNumber: ObjectID(),
+                // postNumber: ObjectID(),
                 username: req.session.username,
                 title: req.body.dtitle,
                 postText: req.body.darticle,
@@ -45,13 +45,15 @@ const postController ={
     },
     viewPost : function(req,res){
 
-        var postNum = req.params.postNumber;
-        Post.find({postNumber:postNum}, function(err,posts){
+        var id = req.params._id;
+        Post.find({_id:id}, function(err,posts){
             if (err){
                 res.render('errorpage');
             }
             else{
+                if (req.session.user)
                 res.render('post',{
+                    id: posts._id,
                     forumtitle: posts.title,
                     forumdate: posts.postDate,
                     forumauthor: posts.username,
