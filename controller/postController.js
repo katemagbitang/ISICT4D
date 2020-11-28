@@ -36,61 +36,31 @@ const postController ={
             if(err){
                 console.log(err);
             } else{
-                if(req.user){
-                    res.render('articles',{
-                        posts: posts,
-                        UserLogged: true
-                    })
-                }
-                else{
-                    res.render('articles',{
-                        posts: posts,
-                        UserLogged: false
-                    })
-                }
-                
+                res.render('articles',{
+                    posts: posts,
+                    // UserLogged: false
+                })
             }
         });
     },
     viewPost : function(req,res){
 
-        Post.findOne({postNumber: req.params.postNumber })
-        .populate('username')
-        .exec(function(err,posts){
-            if(err){
-                return res.render('errorpage');
-                // console.log(err);
-            } else{
-                if(req.user){
-                    res.render('post',{
-                        postNumber: posts.postNumber,
-                        forumtitle: posts.title,
-                        forumdate: posts.postDate,
-                        forumauthor: posts.username.username, 
-                        forumpost: posts.postText,
-                        forumreact: posts.reacts,
-                        commentcount: posts.commentNumber,
-                        username: req.user.username,
-                        id: posts._id,
-                        UserLogged: true,
-                        comments: posts.comments
-                    });
-                }
-                else{
-                    res.render('post',{
-                        forumtitle: posts.title,
-                        forumdate: posts.postDate,
-                        forumauthor: posts.username.username,
-                        forumpost: posts.postText,
-                        forumreact: posts.reacts,
-                        commentcount: posts.commentNumber,
-                        id: posts._id,
-                        UserLogged: false,
-                        comments: posts.comments
-                    });
-                }
+        var postNum = req.params.postNumber;
+        Post.find({postNumber:postNum}, function(err,posts){
+            if (err){
+                res.render('errorpage');
             }
-        })
+            else{
+                res.render('post',{
+                    forumtitle: posts.title,
+                    forumdate: posts.postDate,
+                    forumauthor: posts.username,
+                    forumpost: posts.postText,
+                    commentcount: posts.commentNumber,
+                    comments: posts.comments
+                })
+            }
+        });
     },
     postComment: function(req,res){
 

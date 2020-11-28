@@ -20,6 +20,10 @@
         {{>nav}}
     </div>
     {{!-- NAVBARS END --}}
+    <div class="container-fluid">
+        <div class="row">text</div>
+        <div class="row">text</div>
+    </div>
 
 	<section id="post" style="height: auto;background-image: url(../../img/Black.png);">
 		<div class="posttitle">
@@ -31,11 +35,6 @@
             <div class="content">
                 <div class="ogpost">
                   {{forumpost}}
-                  {{!-- <div class="vote circle">
-                    <div class="increment up"><img src="https://img.icons8.com/material-rounded/24/2ecc71/filled-like.png"/></div>
-                    <div class="count">{{forumreact}}</div>
-                    <div class="increment down"><img src="https://img.icons8.com/material-rounded/24/e74c3c/dislike.png"/></div>
-                  </div> --}}
                   <div>
                     {{#ifCond forumauthor username}}
                     <a href="/editpost/{{id}}">Edit</a> | <a href="/deletepost/{{postNumber}}">Delete</a>
@@ -51,7 +50,7 @@
                     {{/each}}
 
                     <hr style="border: 1px solid #d3d3d3; width: 100%;"> 
-                    {{#if UserLogged}}
+                    {{!-- {{#if UserLogged}} --}}
                     <div class="comment">
                         <div class="usercomment" style="font-weight: 800;">{{username}}</div>
                         <form class="newcommentform" action="/comment/{{postNumber}}" method="POST">
@@ -59,7 +58,7 @@
                             <input type="submit" id="submit" value="COMMENT" class="logbutton" style="width: 15%; margin: 0; margin-left:2%;" disabled>
                         </form>
                     </div>
-                    {{/if}}
+                    {{!-- {{/if}} --}}
                 </div>
             </div>
         </div>

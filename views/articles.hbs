@@ -15,17 +15,14 @@
             {{>nav}}
         </div>
         {{!-- NAVBARS END --}}
-
+        <div class="container-fluid">
+            <div class="row">text</div>
+            <div class="row">text</div>
+        </div>
         <section id="forum">
             <div class="title">
-                <h2 style="color:#2f2f2f; font-size: 40px;">Forum</h2>
-                <h4 style="color: #2f2f2f; width: 60%;">Alyansang Tapat Sa Lasallista believes in a lot of things, and one of them is that through Unity and Collective Effort we can achieve greatness. Join us in various discussions that tackle different political issues and society in general.</h4>
-                <div style="display: flex;align-items: center;justify-content: center;flex-direction: row;width:20%;">                   
-                    {{#if UserLogged}}
-                        <img src="https://img.icons8.com/ios/25/992525/plus.png">
-                        <h4 style="color: #992525; width: 60%;"><a href="/createpost">Add a discussion</a></h4>
-                    {{/if}}
-                </div>
+                <h2 style="color:#2f2f2f; font-size: 40px;">All Articles</h2>
+                <h4 style="color: #2f2f2f; width: 60%;">Saranggola</h4>
                 <div style="min-width:80%;">
                     <form action="/search" method="POST">
                         <input type="text" name="search" placeholder="  Search posts using tags" id="search" style="width: 100%;height:5vh;font-family: 'Lato';">
@@ -39,9 +36,6 @@
                 {{#each posts}}
                     {{>forumpost}}
                 {{/each}}
-                {{!-- {{>forumpost forumtitle="[Martial Law] What if Marcos never declared Martial Law?" id=1}}
-                {{>forumpost forumtitle="[SOGIE Bill] Why are so many against SOGIE Bill?" id=2}}
-                {{>forumpost forumtitle="[ABS-CBN Shutdown] What's your opinion of the impending closure?" id=3}} --}}
             </div>
             
 
