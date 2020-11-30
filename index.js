@@ -7,8 +7,24 @@ const MongoClient = require('mongodb').MongoClient
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const moment = require('moment');
+const multer = require('multer');
+const path = require('path');
+
 const myurl = 'mongodb://localhost:27017/ISICT4D';
 const PORT = 3000;
+
+//Set Storage Engine
+const storage = multer.diskStorage({
+  destination: './public/uploads',
+  filename: function( req, file, callback){
+      callback(null, file.fieldname + '-' + Date.now() +  path.extname(file.originalname));
+  }
+});
+
+//init upload 
+const upload = multer({
+  storage: storage
+}).single('myImage');
 
 const routes = require('./routes/routes.js');
 

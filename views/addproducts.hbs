@@ -1,7 +1,7 @@
 <head>
     {{>head}}
 
-    <title>Add Products | Chapter One</title>
+    <title>Add Products | Saranggola</title>
 </head>
 <body>
     {{!-- NAVBARS START --}}
@@ -21,24 +21,26 @@
         <h5 class="card-title" style="text-align:center; color:#DC3545">Add Product</h5>
         <h6 class="card-subtitle mb-2 text-muted" style="text-align:center">Product Details</h6><br>
 
-        <form id ="addproduct_form" name ="addproduct_form" action = "/addProducts" enctype="multipart/form-data" method="post" onsubmit="return validateForm()">
+        <form id ="addproduct_form" name ="addproduct_form" action = "/addproduct" enctype="multipart/form-data" method="post" >
             <table class="table table-hover" >
-                <tr><th>Book Title: </th>
-                    <td><input class="form-control mr-sm-2" placeholder="Book Title" id="Book_Title" name="Book_Title" required></td>
+                <tr><th>Product Title: </th>
+                    <td><input class="form-control mr-sm-2" placeholder="Product Title" id="Product_Title" name="Product_Title" required></td>
                     
                 </tr>
-                <tr><th>Book Cover: </th>
+                <tr><th>Product Photo: </th>
                     <td><div class="input-group">
                             <span><span class="btn btn-outline-default my-sm-0"><input type="file" accept="image/*" id="myImage" name="myImage" required></span></span>
                         </div></td>
                     
                 </tr>
-                <tr><th>Author/s: </th>
-                    <td><input class="form-control mr-sm-2" placeholder="Book Author/s" id="author" name="author" required></td>
+                <tr><th>Origin: </th>
+                    <td><input class="form-control mr-sm-2" placeholder="Origin" id="origin" name="origin" required></td>
                     
                 </tr>
                 <tr><th>Category: </th>
-                    <td><select class="form-control" id="category" name="category" required> 
+                    <td><input class="form-control mr-sm-2" placeholder="Category" id="category" name="category" required></td>
+
+                    {{!-- <td><select class="form-control" id="category" name="category" required> 
                         <option value="" selected disabled hidden>Select Category</option>
                         <option>Art</option>
                         <option>Architecture</option>
@@ -71,22 +73,22 @@
                         <option>Sports</option>
                         <option>Toddler</option>
                         <option>Travel</option>
-                    </select></td>
+                    </select></td> --}}
                     
                 </tr>
-                <tr><th>Book Synopsis: </th>
-                    <td><textarea class="form-control mr-sm-2" placeholder="Book Synopsis" rows="5" id="bookSynopsis" name="bookSynopsis" required></textarea></td>
+                <tr><th>Product Description: </th>
+                    <td><textarea class="form-control mr-sm-2" placeholder="Product Description" rows="5" id="description" name="description" required></textarea></td>
                     
                 </tr>
-                <tr><th>Publication Year: </th>
+                {{!-- <tr><th>Publication Year: </th>
                     <td><input class="form-control mr-sm-2" type="number" placeholder="2020" min="1600" id="year" name="year" required></td>
                     
-                </tr>
-                <tr><th>Publisher: </th>
-                    <td><input class="form-control mr-sm-2" placeholder="Publishing House" id="publisher" name="publisher" required></td>
+                </tr> --}}
+                <tr><th>Seller: </th>
+                    <td><input class="form-control mr-sm-2" placeholder="Seller" id="seller" name="seller" required></td>
                     
                 </tr>
-                <tr><th>Book Edition: </th>
+                {{!-- <tr><th>Book Edition: </th>
                     <td><input class="form-control mr-sm-2" placeholder="Edition" id="edition" name="edition" required></td>
                     
                 </tr>
@@ -105,20 +107,20 @@
                         <option>Used</option>
                     </select></td>
                     
-                </tr>
+                </tr> --}}
                 <tr><th>Quantity</th>
                     <td><input class="form-control mr-sm-2" type="number" placeholder="0" min="0" id="quantity" name="quantity" required></td>
                     
                 </tr>
 
-                <tr><th>Selling Price: </th>
-                    <td><input class="form-control mr-sm-2" type="number" placeholder="₱ 00.00" min="00.00" id="sellingPrice" name="sellingPrice" required></td>
+                <tr><th>Price: </th>
+                    <td><input class="form-control mr-sm-2" type="number" placeholder="₱ 00.00" min="00.00" id="price" name="price" required></td>
                     
                 </tr>
-                <tr><th>Price Bought: </th>
+                {{!-- <tr><th>Price Bought: </th>
                     <td><input class="form-control mr-sm-2" type="number" placeholder="₱ 00.00" min="00.00" id="priceBought" name="priceBought" required></td>
                     
-                </tr>
+                </tr> --}}
             </table>
             <button class="btn btn-outline-success my-2 my-sm-0" id="submit" type="submit">Add Product</button>
         </form>

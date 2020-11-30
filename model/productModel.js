@@ -35,6 +35,9 @@ const productSchema = new Schema({
     seller: {
         type : String,
         required: [true, 'Required']
+    },
+    bookCover: {
+        type: String
     }
 });
 

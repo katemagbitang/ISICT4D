@@ -1,4 +1,36 @@
 const express = require('express');
+const path = require('path');
+const multer = require('multer');
+
+
+//Set Storage Engine
+const storage = multer.diskStorage({
+    destination: './public/img',
+    filename: function( req, file, callback){
+        callback(null, filename =  file.fieldname + '-' + Date.now() +  path.extname(file.originalname));
+    }
+});
+
+//init upload 
+const upload = multer({
+    storage: storage
+})
+
+// check file type
+function checkFileType(file , callback){
+    // allowed extensions
+    const filetypes = /jpeg|jpg|png/;
+    // check ext
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    //check mimetype
+    const mimetype = filetypes.test(file.mimetype);
+
+    if(mimetype && extname){
+        return callback(null, true);
+    }else{
+        callback("Error: Images only");
+    }
+}
 const app = express();
 
 const controller = require('../controller/controller.js');
@@ -16,7 +48,7 @@ app.get('/logout', userController.getLogout);
 app.get('/getUsername', userController.getUsername);
 app.get('/getEmail', userController.getEmail);
 
-app.get('/addproduct',adminController.getAddProduct);
+
 
 app.get('/createpost', postController.getCreatePost);
 app.get('/articles', postController.viewAllPost);
@@ -36,5 +68,9 @@ app.post('/editpost/:id',postController.postEditPost);
 app.get('/deletepost/:id',postController.getDeletePost);
 
 app.get('/deletecomment/:id/:text', postController.getDeleteComment);
+
+/*Admin Functions*/
+app.get('/addproduct', adminController.getAddProduct);
+app.post('/addproduct', upload.single('myImage'), adminController.postAddProduct);
 
 module.exports = app;
