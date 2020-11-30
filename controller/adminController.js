@@ -59,7 +59,7 @@ const adminController = {
         var price = req.body.price;
         var seller = req.body.seller;
 
-        var bookCover = req.file.filename;
+        var photo = req.file.filename;
 
         // var sellerName = a.trim(); // makes sure there's no space at the start and end (useful in string comparison)
         sellerModel.findOne({seller:seller}, function(err,sellerResult){
@@ -67,7 +67,7 @@ const adminController = {
                 // if author DOES NOT exist in the db, make an author object then push its _ID
 
                 var seller = new sellerModel({
-                    _id : new ObjectId(),
+                    // _id : new ObjectId(),
                     seller : seller
                 })
 
@@ -83,11 +83,11 @@ const adminController = {
                 quantity : quantity,
                 price : price,
                 seller: seller,
-                bookCover : '../img/'+bookCover // i added ../img/
+                photo : '../img/'+photo // i added ../img/
             }
 
             db.insertOne(productModel, item);
-            res.redirect('/');
+            res.redirect('/shop');
         });
 
 

@@ -33,10 +33,11 @@ const productSchema = new Schema({
         required: [true, 'Required']
     },
     seller: {
-        type : String,
+        type : Schema.Types.ObjectId,
+        ref: "Seller",
         required: [true, 'Required']
     },
-    bookCover: {
+    photo: {
         type: String
     }
 });

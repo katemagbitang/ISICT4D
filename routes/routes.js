@@ -37,6 +37,7 @@ const controller = require('../controller/controller.js');
 const userController = require('../controller/userController.js');
 const postController = require('../controller/postController.js');
 const adminController = require('../controller/adminController.js');
+const productController = require('../controller/productController.js');
 
 app.get('/', controller.getIndex);
 app.get('/home', controller.getHome);
@@ -68,6 +69,9 @@ app.post('/editpost/:id',postController.postEditPost);
 app.get('/deletepost/:id',postController.getDeletePost);
 
 app.get('/deletecomment/:id/:text', postController.getDeleteComment);
+
+/*Shop Functions*/
+app.get('/shop', productController.getShop);
 
 /*Admin Functions*/
 app.get('/addproduct', adminController.getAddProduct);
