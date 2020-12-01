@@ -61,14 +61,15 @@ const adminController = {
 
         var photo = req.file.filename;
 
-        // var sellerName = a.trim(); // makes sure there's no space at the start and end (useful in string comparison)
-        sellerModel.findOne({seller:seller}, function(err,sellerResult){
+
+        var sellerName = seller.trim(); // makes sure there's no space at the start and end (useful in string comparison)
+        sellerModel.findOne({seller:sellerName}, function(err,sellerResult){
             if(!sellerResult){
                 // if author DOES NOT exist in the db, make an author object then push its _ID
 
                 var seller = new sellerModel({
-                    // _id : new ObjectId(),
-                    seller : seller
+                    // sellerID : new ObjectId(),
+                    seller : sellerName
                 })
 
                 seller.save();

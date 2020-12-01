@@ -1,7 +1,7 @@
 <head>
     {{>head}}
 
-    <title>Add Products | Saranggola</title>
+    <title>Shop | Saranggola</title>
 </head>
 <body>
     {{!-- NAVBARS START --}}
@@ -30,13 +30,14 @@
             {{#each productList}}
             <div class="col-3">
                 <div class="card text-center">
-                    <a href="../books/{{{productID}}}"style = " color: black">
+                    <a href="../shop/{{{productID}}}"style = " color: black">
                     <img class="card-img-top" src="{{{photo}}}" height="200px" width="180px" alt="Card image cap">
                     </a>
                     <div class="card-body">
-                    <a href="../books/{{{productID}}}"style = " color: black">
+                    <a href="../shop/{{{productID}}}"style = " color: black">
                         <p class="card-text"><b>{{productName}}</b></p>
-                        <p classes="card-text">{{seller}}</p>
+                        <p classes="card-text">{{productOrigin}}</p>
+                        <p classes="card-text">{{sellerName}}</p>
                         <p classes="card-text">Php {{price}}</p>
                     </a>
                     

@@ -72,6 +72,7 @@ app.get('/deletecomment/:id/:text', postController.getDeleteComment);
 
 /*Shop Functions*/
 app.get('/shop', productController.getShop);
+app.get('/shop/:productID', productController.getOneProduct);
 
 /*Admin Functions*/
 app.get('/addproduct', adminController.getAddProduct);

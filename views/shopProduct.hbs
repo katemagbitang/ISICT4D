@@ -1,0 +1,127 @@
+<head>
+    {{>head}}
+    <title>{{productName}} | Saranggola</title>
+</head>
+<body>
+    {{!-- NAVBARS START --}}
+    <div id='navlog'>
+        {{>navlog}}
+    </div>
+    <div id='navadmin'>
+        {{>navadmin}}
+    </div>
+    <div id='nav'>
+        {{>nav}}
+    </div>
+    {{!-- NAVBARS END --}}
+    <div class="container-fluid">
+        <div class="row">text</div>
+        <div class="row">text</div>
+    </div>
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-4">
+                <div class="text-center img-thumbnail">
+                <img src="{{{photo}}}" height="290px" width="250px" alt="{{{productName}}}">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{productName}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{seller}}</h6> <br>
+
+                        <h5 style="color: #DC3545">₱{{price}}</h5> <hr>
+                        <p class="card-subtitle mb-2 text-muted ">Stocks Left: <span id="stocks">{{quantity}}</span></p>
+                        
+                        <form method = "POST">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <h5 style = "padding-right: 15px">Quantity </h5>
+                                    <button class="btn btn-outline-secondary" id="minusBtn" type="button">-</button>
+                                </div>
+                                <input type="number" id="quantity" name = "quantity" value="1" min="1" max= "{{quantity}}" style="text-align:center; width: 50px; height:40px; pointer-events: none "  >
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" id="plusBtn" type="button">+</button>
+                                        <button type = "submit" class="btn btn-danger addTCBtn" style="width: 170px; height:40px;">Add to Cart</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div><br>
+
+        <div class="row">
+            <div class="col-12 card" style="margin: 0 auto">
+                <div class="card-body"> <br>
+                    <h6 class="card-subtitle mb-2 text-muted">Product Details</h6> <hr><br>
+
+                    <p class="card-text"> <b>Description</b> <br><br>{{productDescription}}</p> <br><br>
+
+                    <h6 class="card-subtitle mb-2 text-muted">More Information</h6> <br>
+                    
+                    <table class="table table-hover" >
+                        <tr><th>Product Name: </th>
+                            <td>{{productName}}</td>
+                        </tr>
+                        {{!-- <tr><th>Quality: </th>
+                            <td>{{quality}}</td>
+                        </tr> --}}
+                        {{!-- <tr><th>Edition: </th>
+                            <td>{{edition}}</td>
+                        </tr> --}}
+                        <tr><th>Origin: </th>
+                            <td>{{productOrigin}}</td>
+                        </tr>
+                        {{!-- <tr><th>Publication Year: </th>
+                            <td>{{year}}</td>
+                        </tr> --}}
+                        {{!-- <tr><th>Publisher: </th>
+                            <td>{{publisher}}</td>
+                        </tr> --}}
+                        <tr><th>Category: </th>
+                            <td>{{category}}</td>
+                        </tr>
+                        <tr><th>Seller: </th>
+                            <td>{{seller}}</td>
+                        </tr>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+    </div><br>
+
+
+    <script>
+
+        
+           
+
+
+        $("#minusBtn").on('click', function(){
+
+            var quantity =  parseInt ( $("#quantity").val() );
+            if(quantity >1)
+                $("#quantity").val(quantity-1);
+            
+        })
+
+        $("#plusBtn").on('click', function(){
+
+            var quantity =  parseInt ( $("#quantity").val() );
+            var max =  parseInt( $('#stocks').text() );
+            {{!-- alert(max); --}}
+            
+            if(quantity < max ) 
+                $("#quantity").val(quantity+1);
+            
+        })
+
+    </script>
+
+
+</body>
