@@ -69,6 +69,8 @@ app.post('/editpost/:id',postController.postEditPost);
 app.get('/deletepost/:id',postController.getDeletePost);
 
 app.get('/deletecomment/:id/:text', postController.getDeleteComment);
+/*Pages*/
+app.get('/aboutus',controller.getAbout);
 
 /*Shop Functions*/
 app.get('/shop', productController.getShop);

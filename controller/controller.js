@@ -13,6 +13,9 @@ const controller = {
             res.json({userType:req.session.userType});
         else // if noone is logged in
             res.json({userType:"Visitor"});
+    },
+    getAbout: function(req,res){
+        res.render('aboutus',{});
     }
 }
 
