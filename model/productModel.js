@@ -1,4 +1,3 @@
-const { ObjectID } = require('mongodb');
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -32,11 +31,11 @@ const productSchema = new Schema({
         type : Number,
         required: [true, 'Required']
     },
-    seller: {
+    seller: [{
         type : Schema.Types.ObjectId,
         ref: "Seller",
         required: [true, 'Required']
-    },
+    }],
     photo: {
         type: String
     }

@@ -61,37 +61,46 @@ const adminController = {
 
         var photo = req.file.filename;
 
+        var sellerArr = seller.split(','); // splits the string for every ',' into an array
+        var sellerIDArr = []; // stores seller _ids that will be passed to the bookvers as author
 
-        var sellerName = seller.trim(); // makes sure there's no space at the start and end (useful in string comparison)
-        sellerModel.findOne({seller:sellerName}, function(err,sellerResult){
-            if(!sellerResult){
-                // if author DOES NOT exist in the db, make an author object then push its _ID
+        var sellerArrCount = 0;
 
-                var seller = new sellerModel({
-                    // sellerID : new ObjectId(),
-                    seller : sellerName
-                })
+        sellerArr.forEach(function(a, err){
+            var sellerName = a.trim(); // makes sure there's no space at the start and end (useful in string comparison)
+            sellerModel.findOne({seller:sellerName}, function(err,sellerResult){
+                if(!sellerResult){
+                    // if author DOES NOT exist in the db, make an author object then push its _ID
 
-                seller.save();
-            }
+                    var seller = new sellerModel({
+                        // sellerID : new ObjectId(),
+                        seller : sellerName
+                    })
 
-            var item = {
-                productID:  productID,
-                productName : productName,
-                productCategory :  productCategory, 
-                productOrigin : productOrigin,
-                productDescription : productDescription,
-                quantity : quantity,
-                price : price,
-                seller: seller,
-                photo : '../img/'+photo // i added ../img/
-            }
+                    seller.save();
+                    sellerIDArr.push(seller._id);
+                }
 
-            db.insertOne(productModel, item);
-            res.redirect('/shop');
-        });
+                sellerArrCount++;
 
-
+                if(sellerArrCount == sellerArr.length){
+                    var item = {
+                        productID:  productID,
+                        productName : productName,
+                        productCategory :  productCategory, 
+                        productOrigin : productOrigin,
+                        productDescription : productDescription,
+                        quantity : quantity,
+                        price : price,
+                        seller: sellerIDArr,
+                        photo : '../img/'+photo // i added ../img/
+                    }
+        
+                    db.insertOne(productModel, item);
+                    res.redirect('/shop');
+                }
+            });
+        })
     }
 }
 module.exports = adminController;
