@@ -1,0 +1,228 @@
+<head>
+    {{>head}}
+    <link rel="stylesheet" href="../css/cart.css">
+
+    <title>Cart | Chapter One</title>
+</head>
+<body>
+    {{!-- NAVBARS START --}}
+    <div id='navlog'>
+        {{>navlog}}
+    </div>
+    <div id='navadmin'> 
+        {{>navadmin}} {{!--Comment this navbar out to see the location of the article title, its text, author, date, --}}
+    </div>
+    <div id='nav'>
+        {{>nav}}
+    </div>
+    {{!-- NAVBARS END --}}
+    <div class="container-fluid">
+        <div class="row">text</div>
+        <div class="row">text</div>
+    </div>
+
+
+    <div class = "container " >
+        {{!-- <div class="row">
+            <div class="col-lg-8"> --}}
+                <div id="cart">
+                    <h3 class="text-center text-dark ">Shopping Cart</h3>
+                    <table class="table">
+                        {{#if cartItemsList}}
+                            <thead>
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Subtotal</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                            
+                                {{#each cartItemsList}}
+                                <tr id="{{{productID}}}">
+                                    <td>
+                                        <img src="./img/{{photo}}" height="150px" width="150px" alt="Card image cap">
+                                    </td>
+                                    <td>
+                                        <div class="row">{{productName}}</div>
+                                        <div class="row">{{seller}}</div>
+                                        <div class="row">{{productOrigin}}</div>
+                                    </td>
+                                    <td>{{price}}</td>
+                                    <td>{{quantity}}</td>
+                                    <td id="subtotal">{{subtotal}} </td>
+                                    <td>
+                                        <button type="button" id = "{{{productID}}}" onClick = "deleteThis(this.id)" class="btn btn-danger btn-sm btn-delete">Remove</button>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                                <tr style = "background : #212529">
+                                    <td> </td>
+                                    <td>
+                                        <div class="row"> </div>
+                                        <div class="row"> </div>
+                                        <div class="row"> </div>
+                                        <div class="row"> </div>
+                                        <div class="row"> </div>
+                                    </td>
+                                    <td></td>
+                                    <td style = "color: white"><strong>Grand Total</strong></td>
+                                    <td style = "color: white" id="grandtotal"><strong>{{grandtotal}}</strong> </td>
+                                    <td> </td>
+                                </tr>
+                            {{else}}
+                            {{!-- IF CART IS EMPTY --}}
+                                <br>
+                                <h4 class="text-center text-dark ">Your shopping cart is empty. </h4>
+                                <br>
+                                <h4 class="text-center"><a class=" btn btn-danger btn-lg" role="button" href="/shop">Browse products</a></h4>
+                                <br>
+                            {{/if}}
+                        </tbody>
+                        
+                    </table>
+                    <div class="col ">
+                    </div>     
+                </div>
+                
+            {{!-- </div> --}}
+
+
+
+
+            {{!-- CHECKOUT THING --}}
+            {{!-- <div class="col-lg-4"> --}}
+            
+                <div id ="checkoutModule" >
+
+                    {{#if cartItemsList}}
+                        <h4 class="mb-3">Billing address</h4>
+                        <form class="needs-validation" action = "/checkout"method = "post" validate>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName">Full Name</label>
+                                    <input type="text" class="form-control" id="fullname" name="fullname"placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                    Valid first name is required.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="contactNum">Contact Number</label>
+                                    <input type="text" class="form-control" id="contactNum" name="contactNum"placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                    Your contact number is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                            
+                            </div>
+
+                            <div class="mb-3">
+                            <label for="address">Shipping Address</label>
+                            <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St" required>
+                            <div class="invalid-feedback">
+                                Please enter your shipping address.
+                            </div>
+                            </div>
+
+                            <div class="row">
+                            <div class="col-md-5 mb-3">
+                                <label for="country">City</label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="City" required>
+                                <div class="invalid-feedback">
+                                Please select a valid city.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="state">Barangay</label>
+                                <input type="text" class="form-control" id="barangay" name="barangay" placeholder="Barangay" required>
+                                <div class="invalid-feedback">
+                                Please provide a valid barangay.
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="zip">Zip</label>
+                                <input type="text" class="form-control" id="zip" name="zip" placeholder="" required>
+                                <div class="invalid-feedback">
+                                Zip code required.
+                                </div>
+                            </div>
+                            </div>
+                        {{/if}}
+
+                        {{!-- for messeages  --}}
+                        <h4 class="mb-3">{{msg}} </h4>
+
+                        <hr class="mb-4">
+                        <h4 class="mb-3">Payment </h4>
+                        <p>Please send your payment to any of these bank accounts/gcash account and send the proof of payment in the <a href="/Orders">My Orders</a> after you checkout.</p>
+                        <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Bank Name</th>
+                                        <th scope="col">BPI</th>
+                                        <th scope="col">BDO</th>
+                                        <th scope="col">Security Bank</th>
+                                        <th scope="col">GCash</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Account Name</td>
+                                        <td>Chapter One</td>
+                                        <td>Chapter One</td>
+                                        <td>Chapter One</td>
+                                        <td>Chapter One</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Account No.</td>
+                                        <td style = "width = 100px">0212341234</td>
+                                        <td>8812341234</td>
+                                        <td>9912345678</td>
+                                        <td>09171234567</td>
+                                    </tr>
+                            </tbody>
+                        </table>
+
+                        <br>
+
+                        {{#if cartItemsList}}
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Checkout/Pay</button>
+                        <br><a class="btn btn-dark btn-sm btn-block" role="button" href="/browse">Add more books</a>
+                        {{/if}}
+                    </form> 
+                </div>
+            
+            {{!-- </div> --}}
+        {{!-- </div> --}}
+    </div>
+
+
+    {{!-- <script>
+        $(".btn-delete").click(function(){
+            $(this).parent().parent().remove();
+        });
+
+        function deleteThis(clicked) {
+            
+            fetch("/removeBook/" + clicked, {method: 'POST'})
+                    .then(function(response) {
+                        if(response.ok) {
+                            console.log('Click was recorded');
+                            window.location.assign("/cart");
+                        }
+                        throw new Error('Request failed.');
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+                    return false;
+        }
+    </script> --}}
+
+</body>
