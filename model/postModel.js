@@ -3,11 +3,11 @@ var Schema = mongoose.Schema;
 // var passportLocalMongoose = require('passport-local-mongoose');
 
   const postSchema = new Schema({
-    // postNumber:{
-    //     type: Schema.Types.ObjectId,
-    //     unique: true,
-    //     required: [true, 'Required']
-    // },
+    postNumber:{
+        type: Schema.Types.ObjectId,
+        unique: true,
+        required: [true, 'Required']
+    },
     username: {
         type: String,
         ref: "User",
@@ -31,7 +31,7 @@ var Schema = mongoose.Schema;
         default: 0
     },
     comments:[{ 
-        postNumber: {type: Number, required: [true,'Required']},       
+        // postNumber: {type: Number, required: [true,'Required']},       
         username: {type: String, required: [true,'Required']},
         commentText: {type: String, required: [true,'Required']}    
     }]

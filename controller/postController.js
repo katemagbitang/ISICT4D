@@ -17,13 +17,13 @@ const postController ={
         // Count.findOneAndUpdate({identity: "counter"},{$inc: {numberPost: 1}},function(err,number){
             let post = new Post({
                 // postNumber: number.numberPost+1,
-                // postNumber: ObjectID(),
+                postNumber: new ObjectID(),
                 username: req.session.username,
                 title: req.body.dtitle,
                 postText: req.body.darticle,
                 postDate: Date.now(),
-                commentNumber: 0,
-                reacts: 0,
+                commentNumber: 0
+                // reacts: 0,
             });
             post.save();
             console.log(post);
