@@ -2,7 +2,7 @@
     {{>head}}
     <link rel="stylesheet" href="../css/cart.css">
 
-    <title>Cart | Chapter One</title>
+    <title>Cart | Buhi</title>
 </head>
 <body>
     {{!-- NAVBARS START --}}
@@ -155,8 +155,8 @@
                             </div>
                         {{/if}}
 
-                        {{!-- for messeages  --}}
-                        <h4 class="mb-3">{{msg}} </h4>
+                        {{!-- for messeages 
+                        <h4 class="mb-3">{{msg}} </h4> --}}
 
                         <hr class="mb-4">
                         <h4 class="mb-3">Payment </h4>
@@ -174,10 +174,10 @@
                                 <tbody>
                                     <tr>
                                         <td>Account Name</td>
-                                        <td>Chapter One</td>
-                                        <td>Chapter One</td>
-                                        <td>Chapter One</td>
-                                        <td>Chapter One</td>
+                                        <td>Buhi</td>
+                                        <td>Buhi</td>
+                                        <td>Buhi</td>
+                                        <td>Buhi</td>
                                     </tr>
                                     <tr>
                                         <td>Account No.</td>
@@ -193,7 +193,7 @@
 
                         {{#if cartItemsList}}
                         <button class="btn btn-primary btn-lg btn-block" type="submit">Checkout/Pay</button>
-                        <br><a class="btn btn-dark btn-sm btn-block" role="button" href="/browse">Add more books</a>
+                        <br><a class="btn btn-dark btn-sm btn-block" role="button" href="/shop">Add more books</a>
                         {{/if}}
                     </form> 
                 </div>
@@ -203,14 +203,14 @@
     </div>
 
 
-    {{!-- <script>
+    <script>
         $(".btn-delete").click(function(){
             $(this).parent().parent().remove();
         });
 
         function deleteThis(clicked) {
             
-            fetch("/removeBook/" + clicked, {method: 'POST'})
+            fetch("/removeItem/" + clicked, {method: 'POST'})
                     .then(function(response) {
                         if(response.ok) {
                             console.log('Click was recorded');
@@ -223,6 +223,6 @@
                     });
                     return false;
         }
-    </script> --}}
+    </script>
 
 </body>

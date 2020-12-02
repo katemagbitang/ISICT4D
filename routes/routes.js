@@ -77,6 +77,9 @@ app.get('/aboutus',controller.getAbout);
 app.get('/shop', productController.getShop);
 app.get('/shop/:productID', productController.getOneProduct);
 app.get('/cart',cartController.getCart);
+app.post('/addToCart/:bookVersion_ID', cartController.postAddToCart);
+app.post('/removeItem/:productID', cartController.postRemoveBook);
+app.get('/getCartItemsCount', cartController.getCartItemsCount);
 
 /*Admin Functions*/
 app.get('/addproduct', adminController.getAddProduct);

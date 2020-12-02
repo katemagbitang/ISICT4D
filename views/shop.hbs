@@ -50,4 +50,20 @@
             
         </div>
     </div>
+    <script>
+      function addBookToCart(clicked) {
+            fetch("/addToCart/" + clicked, {method: 'POST'})
+                    .then(function(response) {
+                        if(response.ok) {
+                            console.log('Click was recorded');
+                            window.location.assign("/cart");
+                        }
+                        throw new Error('Request failed.');
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+                    return false;
+        }
+    </script>
 </body>
