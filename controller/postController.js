@@ -45,15 +45,15 @@ const postController ={
     },
     viewPost : function(req,res){
 
-        var id = req.params._id;
-        Post.find({_id:id}, function(err,posts){
+        var postNum = req.params.postNumber;
+        Post.find({postNumber:postNum}, function(err,posts){
             if (err){
                 res.render('errorpage');
             }
             else{
-                if (req.session.user)
+                // if (req.session.user)
                 res.render('post',{
-                    id: posts._id,
+                    postNumber: posts.postNumber,
                     forumtitle: posts.title,
                     forumdate: posts.postDate,
                     forumauthor: posts.username,

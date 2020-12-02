@@ -25,7 +25,7 @@
         <div class="row">text</div>
     </div>
 
-	<section id="post" style="height: auto;background-image: url(../../img/Black.png);">
+	<section id="post" style="height: auto">
 		<div class="posttitle">
             <text class="forumtitle">{{forumtitle}}</text>
             <text class="forumdate">{{memoryDateFormat forumdate}}</text>
@@ -37,7 +37,7 @@
                   {{forumpost}}
                   <div>
                     {{#ifCond forumauthor username}}
-                    <a href="/editpost/{{id}}">Edit</a> | <a href="/deletepost/{{postNumber}}">Delete</a>
+                    <a href="/editpost/{{postNumber}}">Edit</a> | <a href="/deletepost/{{postNumber}}">Delete</a>
                     {{/ifCond}}
                   </div>
                 </div>
